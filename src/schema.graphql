@@ -1,0 +1,83 @@
+scalar Datetime
+
+enum MovieGenreEnum {
+    ACTION
+    ADVENTURE
+    ANIMATION
+    COMEDY
+    CRIME
+    DOCUMENTARY
+    DRAMA
+    FAMILY
+}
+
+type Movie {
+    id: ID!
+    title: String!
+    url: String!
+    year: Int!
+    genre: MovieGenreEnum!
+    rating: Float!
+    created_at: Datetime!
+}
+
+input MovieInput {
+    title: String!
+    year: Int!
+    genre: MovieGenreEnum!
+    rating: Float!
+}
+
+input MovieFilter {
+    genre: MovieGenreEnum
+    createdBetween: DateRange
+    yearBetween: IntDataRange
+    ratingBetween: FloatDataRange
+}
+input IntDataRange {
+    start: Int!
+    end: Int!
+}
+input FloatDataRange {
+    start: Float!
+    end: Float!
+}
+
+input DateRange {
+    start: Datetime!
+    end: Datetime!
+}
+
+enum SortDirectionEnum {
+    ASC
+    DESC
+}
+
+enum SortableMovieField {
+    created_at
+    year
+    rating
+}
+
+input DataPage {
+    first: Int = 10
+    start: Int = 0
+}
+
+input DataSort {
+    sort: SortDirectionEnum = DESC
+    sortBy: SortableMovieField = created_at
+}
+
+
+type Query {
+    movie(id:ID!): Movie!
+    movies(filter:MovieFilter paging:DataPage sorting:DataSort): [Movie!]!
+    totalMovies: Int!
+}
+
+type Mutation {
+    createMovie(input:MovieInput): Movie!
+    updateMovie(id:ID!, input:MovieInput): Movie!
+    deleteMovie(id:ID!): Boolean!
+}

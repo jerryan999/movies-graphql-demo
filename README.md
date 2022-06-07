@@ -1,0 +1,1 @@
+# This is a demo example to learn GraphQL in javascript

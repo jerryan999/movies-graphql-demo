@@ -1,0 +1,21 @@
+{
+  "name": "movies-graphql-api",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon -e js,json,graphql"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^3.8.2",
+    "dotenv": "^16.0.1",
+    "graphql": "^16.5.0",
+    "graphql-playground-middleware-express": "^1.7.23",
+    "mongodb": "^4.6.0",
+    "nodemon": "^2.0.16"
+  }
+}
